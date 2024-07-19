@@ -3,18 +3,25 @@ public class Jogo {
     private Player player;
     private Tabuleiro tabuleiro;
     private Posicao posicao;
+    private int totalTurnos;
 
     Jogo(Player player, Tabuleiro tabuleiro) {
 
         this.tabuleiro = tabuleiro;
         this.player = player;
+        totalTurnos = ((tabuleiro.getTamanhoX() * tabuleiro.getTamanhoY()) + 1);
     }
 
     public Posicao getPosicao() {
         return posicao;
     }
 
-    public Posicao vitoria(Tabuleiro tabuleiro, int quantidadeElementos) {
+    public int getTotalTurnos(){
+
+        return totalTurnos;
+    }
+
+    public Posicao condicaoVitoria(Tabuleiro tabuleiro, int quantidadeElementos) {
 
         int contadorLinha = 0;
         int contadorColuna = 0;
@@ -62,11 +69,12 @@ public class Jogo {
 
                 }else if (tabuleiro.getTabuleiroJogo()[j][quantidadeElementos - j - 1] == 'O') {
 
-                    contadorDiagonalSecundaria = (contadorDiagonalSecundaria * 2);
+                    contadorDiagonalSecundaria = (contadorDiagonalSecundaria + 2);
                 }
 
             }
-
+            
+            //quem ganhou
             if (contadorLinha == quantidadeElementos) {
 
                 return getPosicao().LINHA_X;
@@ -111,12 +119,20 @@ public class Jogo {
 
                 contadorLinha = 0;
                 contadorColuna = 0;
-                contadorDiagonalPrincipal = 0;
-                contadorDiagonalSecundaria = 0;
             }
         }
 
         return posicao;
+    }
+
+    public int condicaoEmpate(int turno, int totalTurnos){
+
+        if(turno == totalTurnos){
+
+            return 1;
+        }
+
+        return 0;
     }
 
 

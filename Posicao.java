@@ -8,4 +8,6 @@ public enum Posicao {
     LINHA_X,
     COLUNA_O,
     COLUNA_X;
+
+    Posicao(){}
 }

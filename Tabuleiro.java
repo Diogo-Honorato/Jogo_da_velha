@@ -32,6 +32,18 @@ public class Tabuleiro {
         return getTabuleiroJogo();
     }
 
+    public char[][] iniciarTabuleiro(){
+
+        for(int i = 0; i < tamanhoX; i++){
+
+            for(int j = 0; j < tamanhoY; j++){
+
+                tabuleiroJogo[i][j] = '.';
+            }
+        }
+        
+        return getTabuleiroJogo();
+    }
 
     public char[][] getTabuleiroJogo() {
         return tabuleiroJogo;
