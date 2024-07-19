@@ -55,6 +55,16 @@ public class Jogo {
                     contadorDiagonalPrincipal = contadorDiagonalPrincipal + 2;
                 }
 
+                //Diagonal secundaria
+                if (tabuleiro.getTabuleiroJogo()[j][quantidadeElementos - j - 1] == 'X') {
+
+                   contadorDiagonalSecundaria++;
+
+                }else if (tabuleiro.getTabuleiroJogo()[j][quantidadeElementos - j - 1] == 'O') {
+
+                    contadorDiagonalSecundaria = (contadorDiagonalSecundaria * 2);
+                }
+
             }
 
             if (contadorLinha == quantidadeElementos) {
@@ -92,14 +102,24 @@ public class Jogo {
 
                 return getPosicao().DIAGONAL_SECUNDARIA_X;
             }
-            else if(contadorDiagonalSecundaria == quantidadeElementos)
+            else if(contadorDiagonalSecundaria == (quantidadeElementos * 2))
             {
 
                 return getPosicao().DIAGONAL_SECUNDARIA_O;
+            }
+            else{
+
+                contadorLinha = 0;
+                contadorColuna = 0;
+                contadorDiagonalPrincipal = 0;
+                contadorDiagonalSecundaria = 0;
             }
         }
 
         return posicao;
     }
+
+
+
 
 }
