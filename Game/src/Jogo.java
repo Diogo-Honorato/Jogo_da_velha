@@ -2,7 +2,6 @@ public class Jogo {
 
     private Player player;
     private Tabuleiro tabuleiro;
-    private Posicao posicao;
     private int totalTurnos;
 
     Jogo(Player player, Tabuleiro tabuleiro) {
@@ -10,10 +9,6 @@ public class Jogo {
         this.tabuleiro = tabuleiro;
         this.player = player;
         totalTurnos = ((tabuleiro.getTamanhoX() * tabuleiro.getTamanhoY()) + 1);
-    }
-
-    public Posicao getPosicao() {
-        return posicao;
     }
 
     public int getTotalTurnos(){
@@ -77,43 +72,43 @@ public class Jogo {
             //quem ganhou
             if (contadorLinha == quantidadeElementos) {
 
-                return getPosicao().LINHA_X;
+                return Posicao.LINHA_X;
 
             } 
             else if (contadorLinha == (quantidadeElementos * 2)) 
             {
 
-                return getPosicao().LINHA_O;
+                return Posicao.LINHA_O;
             } 
             else if (contadorColuna == quantidadeElementos) 
             {
 
-                return getPosicao().COLUNA_X;
+                return Posicao.COLUNA_X;
             } 
             else if (contadorColuna == (quantidadeElementos * 2))
             {
 
-                return getPosicao().COLUNA_O;
+                return Posicao.COLUNA_O;
             }
             else if(contadorDiagonalPrincipal == quantidadeElementos)
             {
 
-                return getPosicao().DIAGONAL_PRINCIPAL_X;
+                return Posicao.DIAGONAL_PRINCIPAL_X;
             }
             else if(contadorDiagonalPrincipal == (quantidadeElementos * 2))
             {
 
-                return getPosicao().DIAGONAL_PRINCIPAL_O;
+                return Posicao.DIAGONAL_PRINCIPAL_O;
             }
             else if(contadorDiagonalSecundaria == quantidadeElementos)
             {
 
-                return getPosicao().DIAGONAL_SECUNDARIA_X;
+                return Posicao.DIAGONAL_SECUNDARIA_X;
             }
             else if(contadorDiagonalSecundaria == (quantidadeElementos * 2))
             {
 
-                return getPosicao().DIAGONAL_SECUNDARIA_O;
+                return Posicao.DIAGONAL_SECUNDARIA_O;
             }
             else{
 
@@ -122,7 +117,7 @@ public class Jogo {
             }
         }
 
-        return posicao;
+        return  Posicao.NULL;
     }
 
     public int condicaoEmpate(int turno, int totalTurnos){

@@ -7,7 +7,8 @@ public enum Posicao {
     LINHA_O,
     LINHA_X,
     COLUNA_O,
-    COLUNA_X;
+    COLUNA_X,
+    NULL;
 
     Posicao(){}
 }
