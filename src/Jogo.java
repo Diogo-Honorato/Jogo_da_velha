@@ -131,6 +131,11 @@ public class Jogo {
     }
 
 
+    public Tabuleiro getTabuleiro() {
+        return tabuleiro;
+    }
 
-
+    public Player[] getPlayer() {
+        return player;
+    }
 }

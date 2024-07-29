@@ -96,7 +96,7 @@ public class TelaRegistro extends JFrame {
         jButtonIniciar.setForeground(new Color(255,209,0));
         jButtonIniciar.setFont(new Font("Serif", Font.BOLD, 40));
         jButtonIniciar.setToolTipText("Iniciar Jogo da velha.");
-        jButtonIniciar.addActionListener(e -> iniciarJogo());
+        jButtonIniciar.addActionListener(e -> trasferirArgumentos());
         add(jButtonIniciar);
     }
 
@@ -122,7 +122,7 @@ public class TelaRegistro extends JFrame {
 
     }
 
-    private void iniciarJogo() {
+    private void trasferirArgumentos() {
         int linhas = 0;
         int colunas = 0;
 
@@ -130,8 +130,7 @@ public class TelaRegistro extends JFrame {
             linhas = Integer.parseInt(jtfLinhas.getText());
             colunas = Integer.parseInt(jtfColunas.getText());
             tabuleiroRegistro = new Tabuleiro(linhas, colunas);
-            // Aqui você pode adicionar o código para iniciar o jogo ou mudar para a próxima tela
-            JOptionPane.showMessageDialog(this, "Jogo iniciado com sucesso!");
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Por favor, insira valores válidos para linhas e colunas.");
         }
