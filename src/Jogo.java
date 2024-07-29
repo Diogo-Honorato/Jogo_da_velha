@@ -1,10 +1,10 @@
 public class Jogo {
 
-    private Player player;
+    private Player[] player = new Player[2];
     private Tabuleiro tabuleiro;
     private int totalTurnos;
 
-    Jogo(Player player, Tabuleiro tabuleiro) {
+    Jogo(Player[] player, Tabuleiro tabuleiro) {
 
         this.tabuleiro = tabuleiro;
         this.player = player;

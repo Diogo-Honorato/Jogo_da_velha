@@ -1,13 +1,11 @@
 public class Player {
 
     private String nome;
-    private int pontos; 
     private char sinal;
 
-    Player(String nome, int pontos, char sinal){
+    Player(String nome, char sinal){
 
         this.nome = nome;
-        this.pontos = pontos;
         this.sinal = sinal;
     }
 
@@ -15,11 +13,15 @@ public class Player {
     public String getNome() {
         return nome;
     }
-    public int getPontos() {
-        return pontos;
-    }
     public char getSinal() {
         return sinal;
     }
-    
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setSinal(char sinal) {
+        this.sinal = sinal;
+    }
 }
