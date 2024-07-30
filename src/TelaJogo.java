@@ -51,14 +51,15 @@ public class TelaJogo extends JFrame {
 
             Posicao vitoria = jogo.condicaoVitoria(jogo.getTabuleiro(), jogo.getTabuleiro().getTamanhoX());
 
-            System.out.println(vitoria);
-
             if (vitoria != Posicao.NULL) {
-                statusPartida.setText("Vitória do player: " + jogo.getPlayer()[turno].getNome());
-                encerrarJogo();
+
+                String message = "Vitória do jogador: " +  jogo.getPlayer()[turno].getNome();
+                statusPartida.setText("Fim de Jogo");
+                encerrarJogo(message);
+
             } else if (jogo.condicaoEmpate(turnoAtual, jogo.getTotalTurnos()) == 1) {
-                statusPartida.setText("Empate");
-                encerrarJogo();
+                statusPartida.setText("Fim de Jogo");
+                encerrarJogo("Empate");
             } else {
                 turno = (turno + 1) % jogo.getPlayer().length;
                 statusPartida.setText("Vez do jogador: " + jogo.getPlayer()[turno].getNome() + " (" + jogo.getPlayer()[turno].getSinal() + ")");
@@ -84,7 +85,7 @@ public class TelaJogo extends JFrame {
         }
     }
 
-    public boolean encerrarJogo() {
+    public boolean encerrarJogo(String message) {
         for (int i = 0; i < botoesTabuleiro.length; i++) {
             for (int j = 0; j < botoesTabuleiro[i].length; j++) {
                 botoesTabuleiro[i][j].setEnabled(false);
@@ -93,7 +94,7 @@ public class TelaJogo extends JFrame {
 
         int escolha = JOptionPane.showOptionDialog(
                 this,
-                "O que você deseja fazer?",
+                message,
                 "Fim de jogo",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
