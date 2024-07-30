@@ -1,15 +1,38 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        Player jogador1 = new Player("Jogador 1", 'X');
-        Player jogador2 = new Player("Jogador 2", 'O');
-        Player[] jogadores = {jogador1, jogador2};
-        Tabuleiro tabuleiro = new Tabuleiro(3, 3);
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.setVisible(true);
 
-        TelaJogo tela = new TelaJogo(jogadores,tabuleiro);
+        telaInicial.getjButtonJogar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaRegistro telaRegistro = new TelaRegistro();
+                telaRegistro.setVisible(true);
+                telaInicial.dispose();
 
-        tela.setVisible(true);
-        
+                telaRegistro.getJButtonIniciar().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        telaRegistro.trasferirArgumentos();
+                        TelaJogo telaJogo = new TelaJogo(telaRegistro.getPlayerRegistro(), telaRegistro.getTabuleiroRegistro());
+                        telaJogo.setVisible(true);
+                        telaRegistro.dispose();
+
+                    }
+                });
+            }
+        });
+
+        telaInicial.getjButtonSair().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                telaInicial.dispose();
+            }
+        });
     }
 }

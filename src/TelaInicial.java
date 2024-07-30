@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class TelaInicial extends JFrame {
 
-   private JButton jButtonJogar = new JButton("JOGAR");
-   private JButton jButtonSair = new JButton("SAIR");
+   private JButton jButtonJogar = new JButton("Novo Jogo");
+   private JButton jButtonSair = new JButton("Sair");
 
    private Font fonteBotaoPadrao = new Font("Serif", Font.BOLD, 40);
 
@@ -24,14 +24,14 @@ public class TelaInicial extends JFrame {
     public void botoesTelaInicial() {
 
         //Especificaçoes do botao de jogar
-        jButtonJogar.setBounds(265, 175, 270, 70);
+        jButtonJogar.setBounds(265, 175, 270, 100);
         jButtonJogar.setBackground(Color.BLUE);
         jButtonJogar.setForeground(new Color(255,209,0));
         jButtonJogar.setFont(fonteBotaoPadrao);
         jButtonJogar.setToolTipText("Iniciar registro.");
 
         //Especificaçoes do botao de saida
-        jButtonSair.setBounds(265, 265, 270, 70);
+        jButtonSair.setBounds(265, 285, 270, 100);
         jButtonSair.setBackground(Color.BLUE);
         jButtonSair.setForeground(new Color(255,209,0));
         jButtonSair.setFont(fonteBotaoPadrao);
@@ -39,5 +39,14 @@ public class TelaInicial extends JFrame {
 
         add(jButtonJogar);
         add(jButtonSair);
+    }
+
+    public JButton getjButtonJogar() {
+        return jButtonJogar;
+    }
+
+
+    public JButton getjButtonSair() {
+        return jButtonSair;
     }
 }

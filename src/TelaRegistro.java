@@ -6,6 +6,7 @@ public class TelaRegistro extends JFrame {
 
     private Player[] playerRegistro = new Player[2];
     private Tabuleiro tabuleiroRegistro;
+
     //Label player
     private JLabel jLabelPlayer_1 = new JLabel("Player 1");
     private JLabel jLabelPlayer_2 = new JLabel("Player 2");
@@ -24,7 +25,7 @@ public class TelaRegistro extends JFrame {
     private JTextField jtfColunas = new JTextField();
 
     //Botao iniciar
-    private JButton jButtonIniciar = new JButton("INICIAR");
+    private JButton jButtonIniciar = new JButton("Iniciar");
 
     public TelaRegistro(){
 
@@ -96,7 +97,6 @@ public class TelaRegistro extends JFrame {
         jButtonIniciar.setForeground(new Color(255,209,0));
         jButtonIniciar.setFont(new Font("Serif", Font.BOLD, 40));
         jButtonIniciar.setToolTipText("Iniciar Jogo da velha.");
-        jButtonIniciar.addActionListener(e -> trasferirArgumentos());
         add(jButtonIniciar);
     }
 
@@ -122,7 +122,7 @@ public class TelaRegistro extends JFrame {
 
     }
 
-    private void trasferirArgumentos() {
+    public void trasferirArgumentos() {
         int linhas = 0;
         int colunas = 0;
 
@@ -138,12 +138,6 @@ public class TelaRegistro extends JFrame {
         inserirDadosPlayer();
         inserirDadosTabuleiro(linhas,colunas);
 
-        /*
-        System.out.println(playerRegistro[0].getNome() + "," + playerRegistro[0].getSinal());
-        System.out.println(playerRegistro[1].getNome() + "," + playerRegistro[1].getSinal());
-        System.out.println(tabuleiroRegistro.getTamanhoX());
-        System.out.println(tabuleiroRegistro.getTamanhoY());
-        */
     }
 
     public Player[] getPlayerRegistro() {
@@ -152,5 +146,9 @@ public class TelaRegistro extends JFrame {
 
     public Tabuleiro getTabuleiroRegistro() {
         return tabuleiroRegistro;
+    }
+
+    public JButton getJButtonIniciar() {
+        return jButtonIniciar;
     }
 }
