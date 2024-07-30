@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.text.*;
 import java.awt.*;
 import java.util.Random;
 
@@ -68,24 +69,28 @@ public class TelaRegistro extends JFrame {
         jtfPlayer_1.setFont(new Font("Serif", Font.BOLD, 20));
         jtfPlayer_1.setHorizontalAlignment(JTextField.CENTER);
         jtfPlayer_1.setToolTipText("Insira o nome do player 1.");
+        setMaxLength(jtfPlayer_1,12);
         add(jtfPlayer_1);
 
         jtfPlayer_2.setBounds(320,240,170,30);
         jtfPlayer_2.setFont(new Font("Serif", Font.BOLD, 20));
         jtfPlayer_2.setHorizontalAlignment(JTextField.CENTER);
         jtfPlayer_2.setToolTipText("Insira o nome do player 2.");
+        setMaxLength(jtfPlayer_2,12);
         add(jtfPlayer_2);
 
         jtfLinhas.setBounds(340,335,50,40);
         jtfLinhas.setFont(new Font("Serif", Font.BOLD, 20));
         jtfLinhas.setHorizontalAlignment(JTextField.CENTER);
         jtfLinhas.setToolTipText("Insira a quantidade de linhas.");
+        setMaxLength(jtfLinhas,2);
         add(jtfLinhas);
 
         jtfColunas.setBounds(415,335,50,40);
         jtfColunas.setFont(new Font("Serif", Font.BOLD, 20));
         jtfColunas.setHorizontalAlignment(JTextField.CENTER);
         jtfColunas.setToolTipText("Insira a quantidade de colunas.");
+        setMaxLength(jtfColunas,2);
         add(jtfColunas);
 
     }
@@ -99,6 +104,26 @@ public class TelaRegistro extends JFrame {
         jButtonIniciar.setToolTipText("Iniciar Jogo da velha.");
         add(jButtonIniciar);
     }
+
+
+    private void setMaxLength(JTextField textField, int maxLength) {
+        ((AbstractDocument) textField.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string == null || (fb.getDocument().getLength() + string.length()) <= maxLength) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text == null || (fb.getDocument().getLength() - length + text.length()) <= maxLength) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+    }
+
 
     public char randomXO(){
 
@@ -116,11 +141,7 @@ public class TelaRegistro extends JFrame {
 
     }
 
-    public void inserirDadosTabuleiro(int linhas, int colunas){
 
-        tabuleiroRegistro = new Tabuleiro(linhas,colunas);
-
-    }
 
     public void trasferirArgumentos() {
         int linhas = 0;
@@ -129,15 +150,26 @@ public class TelaRegistro extends JFrame {
         try {
             linhas = Integer.parseInt(jtfLinhas.getText());
             colunas = Integer.parseInt(jtfColunas.getText());
+
+            // Verificar se as linhas e colunas são iguais e se o valor é menor ou igual a 10
+            if (linhas != colunas) {
+                JOptionPane.showMessageDialog(this, "O número de linhas e colunas deve ser igual.");
+                return;
+            }
+
+            if (linhas < 3 || linhas > 10) {
+                JOptionPane.showMessageDialog(this, "O valor deve ser entre 3 e 10.");
+                return;
+            }
+
+            // Inicializar o tabuleiro com o número de linhas e colunas
             tabuleiroRegistro = new Tabuleiro(linhas, colunas);
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, insira valores válidos para linhas e colunas.");
+            JOptionPane.showMessageDialog(this, "Por favor, insira números para linhas e colunas.");
         }
 
         inserirDadosPlayer();
-        inserirDadosTabuleiro(linhas,colunas);
-
     }
 
     public Player[] getPlayerRegistro() {
