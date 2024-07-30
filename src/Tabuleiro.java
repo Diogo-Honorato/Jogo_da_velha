@@ -4,12 +4,15 @@ public class Tabuleiro {
     private int tamanhoX; 
     private int tamanhoY;
 
-    Tabuleiro(int dimensaoX, int dimensaoY){
+
+    public Tabuleiro(int dimensaoX, int dimensaoY){
 
         tamanhoX = dimensaoX;
         tamanhoY = dimensaoY;
 
         tabuleiroJogo = new char[tamanhoX][tamanhoY];
+
+        iniciarTabuleiro();
     }
 
     public void printTabuleiro(char[][] mapa){

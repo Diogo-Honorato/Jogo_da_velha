@@ -8,7 +8,7 @@ public class Jogo {
 
         this.tabuleiro = tabuleiro;
         this.player = player;
-        totalTurnos = ((tabuleiro.getTamanhoX() * tabuleiro.getTamanhoY()) + 1);
+        totalTurnos = ((tabuleiro.getTamanhoX() * tabuleiro.getTamanhoY()) - 1);
     }
 
     public int getTotalTurnos(){
@@ -18,10 +18,14 @@ public class Jogo {
 
     public Posicao condicaoVitoria(Tabuleiro tabuleiro, int quantidadeElementos) {
 
-        int contadorLinha = 0;
-        int contadorColuna = 0;
-        int contadorDiagonalPrincipal = 0;
-        int contadorDiagonalSecundaria = 0;
+        int contadorLinha_X = 0;
+        int contadorLinha_O = 0;
+        int contadorColuna_X = 0;
+        int contadorColuna_O = 0;
+        int contadorDiagonalPrincipal_X = 0;
+        int contadorDiagonalPrincipal_O = 0;
+        int contadorDiagonalSecundaria_X = 0;
+        int contadorDiagonalSecundaria_O = 0;
 
         for (int i = 0; i < tabuleiro.getTamanhoX(); i++) {
 
@@ -30,90 +34,96 @@ public class Jogo {
                 // Linha
                 if (tabuleiro.getTabuleiroJogo()[i][j] == 'X') {
 
-                    contadorLinha++;
+                    contadorLinha_X++;
 
                 } else if (tabuleiro.getTabuleiroJogo()[i][j] == 'O') {
 
-                    contadorLinha = contadorLinha + 2;
+                    contadorLinha_O = contadorLinha_O + 2;
                 }
 
                 // Coluna
                 if (tabuleiro.getTabuleiroJogo()[j][i] == 'X') {
 
-                    contadorColuna++;
+                    contadorColuna_X++;
 
                 } else if (tabuleiro.getTabuleiroJogo()[j][i] == 'O') {
 
-                    contadorColuna = contadorColuna + 2;
+                    contadorColuna_O = contadorColuna_O + 2;
                 }
 
                 // Diagonal
                 if (i == j && tabuleiro.getTabuleiroJogo()[i][j] == 'X') {
 
-                    contadorDiagonalPrincipal++;
+                    contadorDiagonalPrincipal_X++;
 
                 } else if (i == j && tabuleiro.getTabuleiroJogo()[i][j] == 'O') {
 
-                    contadorDiagonalPrincipal = contadorDiagonalPrincipal + 2;
+                    contadorDiagonalPrincipal_O = contadorDiagonalPrincipal_O + 2;
                 }
 
                 //Diagonal secundaria
                 if (tabuleiro.getTabuleiroJogo()[j][quantidadeElementos - j - 1] == 'X') {
 
-                   contadorDiagonalSecundaria++;
+                   contadorDiagonalSecundaria_X++;
 
                 }else if (tabuleiro.getTabuleiroJogo()[j][quantidadeElementos - j - 1] == 'O') {
 
-                    contadorDiagonalSecundaria = (contadorDiagonalSecundaria + 2);
+                    contadorDiagonalSecundaria_O = (contadorDiagonalSecundaria_O + 2);
                 }
 
             }
             
             //quem ganhou
-            if (contadorLinha == quantidadeElementos) {
+            if (contadorLinha_X == quantidadeElementos) {
 
                 return Posicao.LINHA_X;
 
             } 
-            else if (contadorLinha == (quantidadeElementos * 2)) 
+            else if (contadorLinha_O == (quantidadeElementos * 2))
             {
 
                 return Posicao.LINHA_O;
             } 
-            else if (contadorColuna == quantidadeElementos) 
+            else if (contadorColuna_X == quantidadeElementos)
             {
 
                 return Posicao.COLUNA_X;
             } 
-            else if (contadorColuna == (quantidadeElementos * 2))
+            else if (contadorColuna_O == (quantidadeElementos * 2))
             {
 
                 return Posicao.COLUNA_O;
             }
-            else if(contadorDiagonalPrincipal == quantidadeElementos)
+            else if(contadorDiagonalPrincipal_X == quantidadeElementos)
             {
 
                 return Posicao.DIAGONAL_PRINCIPAL_X;
             }
-            else if(contadorDiagonalPrincipal == (quantidadeElementos * 2))
+            else if(contadorDiagonalPrincipal_O == (quantidadeElementos * 2))
             {
 
                 return Posicao.DIAGONAL_PRINCIPAL_O;
             }
-            else if(contadorDiagonalSecundaria == quantidadeElementos)
+            else if(contadorDiagonalSecundaria_X == quantidadeElementos)
             {
 
                 return Posicao.DIAGONAL_SECUNDARIA_X;
             }
-            else if(contadorDiagonalSecundaria == (quantidadeElementos * 2))
+            else if(contadorDiagonalSecundaria_O == (quantidadeElementos * 2))
             {
 
                 return Posicao.DIAGONAL_SECUNDARIA_O;
             }
             else{
 
-                contadorLinha = 0;
-                contadorColuna = 0;
+                contadorLinha_X = 0;
+                contadorLinha_O = 0;
+
+                contadorColuna_X = 0;
+                contadorColuna_O = 0;
+
+                contadorDiagonalSecundaria_X = 0;
+                contadorDiagonalSecundaria_O = 0;
             }
         }
 
